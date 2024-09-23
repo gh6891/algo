@@ -7,4 +7,4 @@ for i in range(9):
         n = i + 1
         m = n_array.index(maximum) + 1
 print(maximum)
-print(n, m)
+print(n, m) 
