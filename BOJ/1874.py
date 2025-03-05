@@ -1,31 +1,23 @@
 import sys
 
 N = int(sys.stdin.readline())
-answer = ""
+sequence = [int(sys.stdin.readline()) for _ in range(N)]
+
+operation = []
 stack = [] #숫자들 정리하는 곳
-data_stack = [] #만들어야할 수열 넣는 곳
-for _ in range(N):
-    data = int(sys.stdin.readline())
-    data_stack.append(data)
 
-for i in range(1, N+1):
-    stack.append(i)
+current = 1
+
+for num in sequence:
+    while current <= num:
+        stack.append(current)
+        operation.append('+')
+        current = current + 1
     
-    answer = answer + "+" + "\n"
-
-    if len(data_stack) == 0:
-        break
-    print("data", data_stack)
-    print("stack", stack)
-    while stack[-1] == data_stack[0]: #스택과 데이터끝스택이 다르면 끝
-        
-        print("data", data_stack)
-        print("stack", stack)
-
+    if stack[-1] == num:
         stack.pop()
-        data_stack.pop(0)
-        answer = answer + "-" + "\n"
-        if len(data_stack) == 0:
-            break
-        
-print(answer)
+        operation.append('-')
+    else:
+        print("NO")
+        exit()
+print("\n".join(operation))
